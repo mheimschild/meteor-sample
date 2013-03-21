@@ -1,9 +1,16 @@
 <head>
   <title>meteor-sample</title>
+  <link rel='stylesheet' href='/foundation.min.css'></link>
 </head>
 
 <body>
-  {{> tags}}
+  <div class="row">
+    <div class="large-10 columns">{{> tags}}</div>
+    <div class="large-2 columns">{{> sidenav}}</div>
+  </div>
+  
+  <script src="/javascripts/foundation.min.js"></script>
+  {{> modal}}
 </body>
 
 <template name="tags">
@@ -17,8 +24,64 @@
       <tr>
         <td>{{_id}}</td>
         <td>{{name}}</td>
-        <td></td>
+        <td>
+          <a href="#" data-id="{{_id}}" class="button edit">Edit</a>
+        </td>
       </tr>
     {{/each}}
   </table>
+</template>
+
+<template name="sidenav">
+  <ul class="side-nav">
+    <li class="active">
+      <a href="#">Link 1</a>
+    </li>
+    <li>
+      <a href="#">Link 2</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="#">Link 3</a>
+    </li>
+    <li>
+      <a href="#">Link 4</a>
+    </li>
+  </ul>
+</template>
+
+<template name="modal">
+  <div id="my-modal" class="hidden">
+    <form>
+      <fieldset>
+        <legend>Edit Tag</legend>
+        <div class="row">
+          <div class="large-2 columns">
+            <label>Tag Name</label>
+          </div>
+          <div class="large-10 columns">
+            <input id="name" type='text' value="{{tag.name}}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-2 columns">
+            <label> Category</label>
+          </div>
+          <div class="large-10 columns">
+            <select>
+              <option>Office1</option>
+              <option {{#if selected tag.category}} selected {{/if}}>Office2</option>
+              <option>Office3</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12">
+            <a id="save" href="#" style="float: right" class="button">Save</a>
+            <a id="cancel" href="#" style="float: right" class="button secondary">Cancel</a>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 </template>

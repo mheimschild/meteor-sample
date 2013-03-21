@@ -1,1 +1,9 @@
 /* CSS declarations go here */
+
+.hidden {
+  display: none;
+}
+
+#my-modal {
+  width: 800px;
+}
